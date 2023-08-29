@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Image Puzzle</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/image-puzzle.css" rel="stylesheet" />
+    <script src="js/im.js"></script>
+</head>
+
+<body>
+    <div id="collage">
+        <h1><strong>Image Puzzle</strong></h1>
+        <hr />
+        <div id="playPanel" style="padding:5px;display:none;">
+            <h3 id="imgTitle"></h3>
+            <hr />
+            <div style="display:inline-block; margin:auto; width:95%; vertical-align:top;">
+                <ul id="sortable" class="sortable"></ul>
+                <div id="actualImageBox">
+                    <div id="timeBox">
+                        Time Taken: <span id="timerPanel"></span> secs
+                    </div>
+                    <img id="actualImage" />
+                    <div>Re-arrange to create a picture like this.</div>
+                    <p id="levelPanel">
+                        <input type="radio" name="level" id="easy" checked="checked" value="3"
+                            onchange="imagePuzzle.startGame(images, this.value);" /> <label for="easy">Easy</label>
+                        <input type="radio" name="level" id="medium" value="4"
+                            onchange="imagePuzzle.startGame(images, this.value);" /><label for="medium">Medium</label>
+                    </p>
+                    <div>
+                        <button id="btnRule" type="button" class="btn" onclick="rules();">Rules</button>
+                        <button id="newPhoto" type="button" class="btn" onclick="restart();">Another Photo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="gameOver" style="display:none;">
+            <div style="background-color: #fc9e9e; padding: 5px 10px 20px 10px; text-align: center; ">
+                <h2 style="text-align:center">Game Over!!</h2>
+                <div style="font-size: 18px; font-style: bold;">
+                    <span style="font-size: 24px;">🎉🎊</span><br />
+                    Congratulations!! <br /> You have completed this picture.
+                    <br /> Time Taken: <span class="timeCount">0</span> seconds<br />
+                    <span style="font-size: 24px;">🎊🎉</span><br />
+                </div>
+                <div id="factDisplay" style="font-size: 18px;font-style: bold;"></div>
+                <div>
+                    <button type="button" onclick="window.location.reload(true);">Play Again</button>
+                </div>
+            </div>
+        </div>
+
+        <script id="images">
+            var images = [
+                { src: 'images/1.jpg',title: '<strong>Carina Nebula</strong>' },
+                { src: 'images/2.jpg',title: '<strong>Southern Ring Nebula</strong>'},
+                { src: 'images/3.jpg',title: '<strong>Cartwheel and two smaller companion Galaxies</strong>' },
+                { src: 'images/4.jpg',title: '<strong>Iconic Pillars of Creation</strong>' },
+                { src: 'images/5.jpg',title: '<strong>Orion nebula</strong>'  },
+                { src: 'images/6.jpg',title: '<strong>Spiral Galaxy</strong>' },
+                { src: 'images/7.jpg',title: '<strong>Cosmos</strong>'  },
+                { src: 'images/8.jpg',title: '<strong>Merging Galaxies</strong>'  },
+                { src: 'images/9.jpg',title: '<strong>SMACS 0273</strong>'  },
+                { src: 'images/10.jpg',title: '<strong>Star ready to explode</strong>'  }
+            ];
+
+            window.onload = function () {
+                var gridSize = document.querySelector('#levelPanel input[type="radio"]:checked').getAttribute('value');
+                imagePuzzle.startGame(images, gridSize);
+            };
+            function restart() {
+                var gridSize = document.querySelector('#levelPanel input[type="radio"]:checked').getAttribute('value');
+                imagePuzzle.startGame(images, gridSize);
+            }
+            function rules() {
+                alert('Re arrange the image parts in a way that it correctly forms the picture. \nThe no. of steps taken will be counted.');
+            }
+
+            var facts = [
+                "The primary purpose of NASA's Webb Space Telescope is to study the universe in infrared wavelengths",
+                "James Webb Space Telescope primarily focuses on Infrared light",
+                "Intended launch vehicle for the James Webb Space Telescope is NASA's Space Launch System (SLS)",
+                "Approximate distance of the James Webb Space Telescope from Earth is 1,500,000 kilometers (932,056 miles)",
+                "Major scientific goal of the James Webb Space Telescope is to observe the atmospheres of exoplanets",
+                "Hubble Space Telescope 2 (HST-2) is the successor to the Hubble Space Telescope and is designed to work in synergy with the James Webb Space Telescope",
+                "Primary mirror of the James Webb Space Telescope is made of Gold-coated beryllium"
+            ];
+        </script>
+    </div>
+</body>
+
+</html>
